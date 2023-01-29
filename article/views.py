@@ -18,12 +18,13 @@ def ArticleDetail(request, id):
     id = article_data.id
 
     # ------------------------- FOR comment ------------------------
-    comment_data = Comment.objects.get(post_id=id)
+    comment_data = Comment.objects.all()
+    # comment_data = Comment.objects.get(post_id=id)
     # print(comment_data.body)
-    c_name = comment_data.name
-    c_email = comment_data.email
-    c_body = comment_data.body
-    c_time = comment_data.created
+    # c_name = comment_data.name
+    # c_email = comment_data.email
+    # c_body = comment_data.body
+    # c_time = comment_data.created
     data = {
         'title': title,
         'date': date,
@@ -31,10 +32,11 @@ def ArticleDetail(request, id):
         'author': author,
         'id': id,
         # Comment --------------
-        'c_name': c_name,
-        'c_email': c_email,
-        'c_body': c_body,
-        'c_time': c_time,
+        # 'c_name': c_name,
+        # 'c_email': c_email,
+        # 'c_body': c_body,
+        # 'c_time': c_time,
+        'comment_data': comment_data
     }
     
     return render(request, 'articledetailpage.html', data)
@@ -49,7 +51,7 @@ def SubmitArticle(request):
         author = request.POST.get('author')
         print(title, content, date)
         if(title !='' and content !='' and date !='' and author !='' ):
-            ArticleModel(title=title, content=content, date=date, author=author, post=1).save()
+            ArticleModel(title=title, content=content, date=date, author=author).save()
 
     return render(request, 'submitarticle.html')
 

@@ -19,9 +19,10 @@
       .commentContainer {
         text-align: left;
         padding: 10px;
-        width: 50%; 
+        width: 70%; 
         background-color: white;
         border-style: dashed;
+        margin: 10px;
         color: grey;
         font-family:  sans-serif;
         font-weight: 100;
@@ -51,10 +52,16 @@
       {{content}}
     </div>
     <h2>All Comments</h2>
-    <div class = 'commentContainer'>
-        <h8>{{c_body}}</h8><br>
-        <h9>By: {{c_name}} | {{c_email}} | Created at: {{c_time}}<h9>
-    </div>
+    {% for i in comment_data %}
+    {% if i.post_id == id %}
+      <div class = 'commentContainer'>
+          <h4>{{i.body}}</h4><br>
+          By: {{i.name}} | {{i.email}} | Created at: {{i.created}} <a href='/submitarticle'>Edit</a>
+      </div>
+    {% comment %} {% else %}
+      none {% endcomment %}
+    {% endif %}
+    {% endfor %}
 
 
     {% comment %} {% if new_comment %} {% endcomment %}
