@@ -55,8 +55,9 @@
     {% for i in comment_data %}
     {% if i.post_id == id %}
       <div class = 'commentContainer'>
-          <h4>{{i.body}}</h4><br>
-          By: {{i.name}} | {{i.email}} | Created at: {{i.created}} <a href='/submitarticle'>Edit</a>
+          <h4>{{i.body}} </h4><br>
+          By: {{i.name}} | {{i.email}} | Created at: {{i.created}} <a href='/editcomment/{{i.id}}'>Edit</a>
+          <a href='/deletecomment/{{i.id}}'>Delete</a>
       </div>
     {% comment %} {% else %}
       none {% endcomment %}

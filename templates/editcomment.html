@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Comment</title>
+    </head
+    <body>
+        {% include 'header.html' %}
+        {% comment %} {{msg}}
+        
+    <div id="DivTwo">
+        {% comment %} <form action="/show">
+            <input type="submit" value="Show Records">
+        </form> {% endcomment %} 
+    <center>
+        <body bgcolor = "yellow">
+            <br>
+            <br>
+            <br>
+            <h1>Edit Your Comment</h1>
+            <form action="" method="post">
+            {% csrf_token %}
+            <p> Name: {{c_name}} </p>
+            {% comment %} <p><input type="text" name="name" value={{c_name}}  required/></p> {% endcomment %}
+            <p> Edit Comment: </p>
+            {% comment %} <p><input type="text" name="body" value={{c_body}}  required/></p> {% endcomment %}
+            <textarea type="text" name="body" rows="8" value={{c_body}} cols="50" required></textarea>
+            <p><input type="submit" value="submit" /></p>
+            </form>
+        </body>
+    </center>
+</html>

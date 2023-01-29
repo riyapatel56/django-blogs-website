@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from.models import UserModel, ArticleModel, Comment
 from django.core.paginator import Paginator
@@ -67,3 +67,34 @@ def SubmitComment(request, id):
         Comment(name=name, email=email, body=body, post_id=id).save()
 
     return HttpResponse("Comment Added")
+
+def EditComment(request, id):
+    comment_data = Comment.objects.get(id=id)
+    c_name = comment_data.name
+    c_email = comment_data.email
+    c_body = comment_data.body
+
+    data = {
+        'c_name': c_name,
+        'c_email': c_email,
+        'c_body': c_body,
+    }
+    
+    if request.method == 'POST':
+        
+        # name = request.POST.get('name')
+        body = request.POST.get('body')
+        # email = request.POST.get('email')
+        # print(name, body, email)
+        if(body !=''):
+            Comment.objects.filter(id=id).update(body=body)
+        # Comment(name=name, email=email, body=body, post_id=id).save()
+
+        return HttpResponse("Comment Updated")
+    
+    return render(request, 'editcomment.html', data)
+
+def deleteComment(request, id):
+    # username = request.GET['username']
+    Comment.objects.filter(id=id).delete()
+    return HttpResponse("Comment Deleted")
