@@ -23,12 +23,7 @@ def ArticleDetail(request, id):
     c_name = comment_data.name
     c_email = comment_data.email
     c_body = comment_data.body
-    # comment = {
-    #     'c_name': c_name,
-    #     'c_email': c_email,
-    #     'c_body': c_body,
-    # }
-
+    c_time = comment_data.created
     data = {
         'title': title,
         'date': date,
@@ -39,6 +34,7 @@ def ArticleDetail(request, id):
         'c_name': c_name,
         'c_email': c_email,
         'c_body': c_body,
+        'c_time': c_time,
     }
     
     return render(request, 'articledetailpage.html', data)
