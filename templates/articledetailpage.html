@@ -16,6 +16,16 @@
         font-family:  sans-serif;
         font-weight: 200;
       }
+      .commentContainer {
+        text-align: left;
+        padding: 10px;
+        width: 50%; 
+        background-color: white;
+        border-style: dashed;
+        color: grey;
+        font-family:  sans-serif;
+        font-weight: 100;
+      }
       .content{
         padding: 10px;
         background-color: white;
@@ -36,9 +46,14 @@
             <h6>Author: {{author}} | Published On: {{date}}<h6>
             <h6>Article ID: {{id}}<h6>
         </div>
-  </center>
+    </center>
     <div class ="content" >
       {{content}}
+    </div>
+    <h2>All Comments</h2>
+    <div class = 'commentContainer'>
+        <h8>{{c_body}}</h8><br>
+        <h9>By: {{c_name}} | {{c_email}}<h9>
     </div>
 
 
@@ -46,7 +61,7 @@
     {% comment %} <h2>Your comment has been added.</h2>
     {% else %} {% endcomment %}
     <h2>Add a new comment</h2>
-    <form action="/submitcomment" method="post">
+    <form action="/submitcomment/{{id}}" method="post">
         
         {% csrf_token %}
             <p> Enter Your name: </p>
