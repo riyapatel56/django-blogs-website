@@ -1,0 +1,46 @@
+{% comment %} {% include 'static/css/index.css' %} {% endcomment %}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title> Hello </title>
+    <link rel="stylesheet" href='static/css/index.css'>
+    <style>
+      .container {
+        text-align: center;
+        margin: 10px;
+        float: left;
+        padding: 10px;
+        height: 220px;
+        width: 270px; 
+        background-color: black;
+        color: white;
+        font-family:  sans-serif;
+        font-weight: 200;
+      }
+      .content{
+        padding: 10px;
+        background-color: white;
+        color: black;
+        font-family:  sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+      }
+
+    </style>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <br>
+    {% for i in all_articles %}
+    <a href='/articledetail/{{i.title}}'>
+    <div class ="container" >
+        <h2>{{i.title}}</h2>
+        {% comment %} {{i.title}} {% endcomment %}
+        <h6>Author: {{i.author}} | Published On: {{i.date}}<h6>
+        <h6>Article ID: {{i.id}}<h6>
+    </div></a>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,67 @@
+{% comment %} {% include 'static/css/index.css' %} {% endcomment %}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href='static/css/index.css'>
+    <title> Hello </title>
+    <style>
+      .container {
+        text-align: center;
+        padding: 10px;
+        width: 50%; 
+        background-color: black;
+        color: white;
+        font-family:  sans-serif;
+        font-weight: 200;
+      }
+      .content{
+        padding: 10px;
+        background-color: white;
+        color: black;
+        font-family:  sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+      }
+
+    </style>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <br>
+    <center>
+        <div class ="container" >
+            <h2>{{title}}</h2>
+            <h6>Author: {{author}} | Published On: {{date}}<h6>
+            <h6>Article ID: {{id}}<h6>
+        </div>
+  </center>
+    <div class ="content" >
+      {{content}}
+    </div>
+
+
+    {% comment %} {% if new_comment %} {% endcomment %}
+    {% comment %} <h2>Your comment has been added.</h2>
+    {% else %} {% endcomment %}
+    <h2>Add a new comment</h2>
+    <form action="/submitcomment" method="post">
+        
+        {% csrf_token %}
+            <p> Enter Your name: </p>
+            <p><input type="text" name="name" required/></p>
+
+            <p> Enter Your Email: </p>
+            <p><input type="email" name="email" required/></p>
+
+            <p> Enter Comment: </p>
+            <textarea type="text" name="body" rows="8" cols="50" required></textarea>
+
+            <p><input type="submit" value="Add comment"></p>
+    </form>
+    {% comment %} {% endif %} {% endcomment %}
+
+
+  </body>
+</html>
